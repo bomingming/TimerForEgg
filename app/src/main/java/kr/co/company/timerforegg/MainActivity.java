@@ -30,32 +30,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageViewStart;
     private CountDownTimer countDownTimer;
     private Button soft;
+    private Button hard;
     
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         initViews();
         initListeners();
 
+        soft.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.soft: /*반숙 버튼 클릭 시 */
+                        setTimerValues();
+                        break;
+                    case R.id.hard: /*완숙 버튼 클릭 시*/
+                        setTimerValuesHard();
+                        break;
+                }
+            }
+        });
     }
-    
+
     private void initViews(){
-        progressBarCircle = findViewById(R.id.progressBarCircle);
-        textViewTime = findViewById(R.id.textViewTime);
-        imageViewReset = findViewById(R.id.imageViewReset);
-        imageViewStart = findViewById(R.id.imageViewStart);
-        soft = findViewById(R.id.soft);
+    progressBarCircle = findViewById(R.id.progressBarCircle);
+    textViewTime = findViewById(R.id.textViewTime);
+    imageViewReset = findViewById(R.id.imageViewReset);
+    imageViewStart = findViewById(R.id.imageViewStart);
+    soft = findViewById(R.id.soft);
+    hard = findViewById(R.id.hard);
     }
-    
+
     private void initListeners(){
         imageViewReset.setOnClickListener(this);
         imageViewStart.setOnClickListener(this);
     }
-    
-    
+
     @Override
     public void onClick(View view){
         switch(view.getId()){
@@ -68,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
     private void reset(){
         stopCountDownTimer();
         startCountDownTimer();
@@ -79,11 +95,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setProgressBarValues();
 
             imageViewReset.setVisibility(View.VISIBLE);
-            imageViewStart.setImageResource(R.drawable.ic_baseline_stop_circle_24);
+            imageViewStart.setImageResource(R.drawable.ic_baseline_pause_circle_outline_24);
 
             timerStatus = TimerStatus.STARTED;
 
-            startCountDownTimer();
+            //startCountDownTimer();
         }else{
             imageViewReset.setVisibility(View.GONE);
             imageViewStart.setImageResource(R.drawable.ic_baseline_play_circle_outline_24);
@@ -96,6 +112,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setTimerValues(){
         timeCountInMilliSeconds = 9 * 60 * 1000;
+        startCountDownTimer();
+    }
+
+    private void setTimerValuesHard() {
+        timeCountInMilliSeconds = 12 * 60 * 1000;
+        startCountDownTimer();
     }
 
     private void startCountDownTimer(){
