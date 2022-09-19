@@ -41,8 +41,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initViews();
         initListeners();
 
-        // 리스너로 반숙이 버튼 작업중
+        Button soft = (Button) findViewById(R.id.soft);
+        Button hard = (Button) findViewById(R.id.hard);
 
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.soft:
+                        setTimerValues();
+                        textViewTime.setText(hmsTimeFormatter(timeCountInMilliSeconds));
+                        break;
+                    case R.id.hard:
+                        setTimerValuesHard();
+                        textViewTime.setText(hmsTimeFormatter(timeCountInMilliSeconds));
+                        break;
+                }
+            }
+        };
+
+        soft.setOnClickListener(listener);
+        hard.setOnClickListener(listener);
+
+        /*// 리스너로 반숙이 버튼 작업중
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
         Button soft = (Button) findViewById(R.id.soft); // 버튼 불러오기
-        soft.setOnClickListener(listener); // 메소드 호출하여 48줄에 만든 리스너 집어넣기
+        soft.setOnClickListener(listener); // 메소드 호출하여 48줄에 만든 리스너 집어넣기*/
 
 
 
