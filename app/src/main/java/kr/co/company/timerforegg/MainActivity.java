@@ -63,18 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         soft.setOnClickListener(listener);
         hard.setOnClickListener(listener);
 
-        /*// 리스너로 반숙이 버튼 작업중
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setTimerValues();
-                textViewTime.setText(hmsTimeFormatter(timeCountInMilliSeconds));
-            }
-        };
-        Button soft = (Button) findViewById(R.id.soft); // 버튼 불러오기
-        soft.setOnClickListener(listener); // 메소드 호출하여 48줄에 만든 리스너 집어넣기*/
-
-
 
         /*soft.setOnClickListener(new Button.OnClickListener(){
 
